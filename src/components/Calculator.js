@@ -4,6 +4,8 @@ import './css/calculator.css';
 import Button from './Button';
 import Display from './Display';
 
+import math from 'mathjs';
+
 class Calculator extends Component {
   constructor() {
     super();
@@ -37,16 +39,17 @@ class Calculator extends Component {
   }
 
   calculateOperations = () => {
-    console.log(this.state.operations);
-    // let string = this.state.operations.join('');
-    let equation = this.state.operations.map(item => {
-      if (item !== ('+' || '-' || '*' || '/')) {
-        return Number(item);
-      } else {
-        return item;
-      }
-    });    
-    console.log(equation);
+    let result = this.state.operations.join('');
+    console.log(`Result CO: ${result}`);
+    if (result) {
+      result = math.eval(result);
+      result = math.format(result, { precision: 14 });
+      result = String(result);
+      this.setState({
+        operations: [result]
+      });
+    }
+    console.log(`Result CO post-eval: ${result}`);
   }
 
   render() {

@@ -2,7 +2,16 @@ import React, { Component } from 'react';
 
 class Button extends Component {
   render() {
-    return <div className="btn">{this.props.children}</div>
+    return (
+      <div 
+        className="btn"
+        onClick={this.props.onClick}
+        data-size={this.props.size}
+        data-value={this.props.value}
+      >
+        {this.props.label}
+      </div>
+    );
   }
 }
 

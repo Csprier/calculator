@@ -15,7 +15,7 @@ class Calculator extends Component {
   handleClick = (e) => {
     // Get the value from the button's data-value
     const value = e.target.getAttribute('data-value');
-    console.log('handleClick value: ', value);
+    // console.log('handleClick value: ', value);
     switch (value) {
       case 'clear':
         // clear the array
@@ -34,6 +34,19 @@ class Calculator extends Component {
         });
         break;
     }
+  }
+
+  calculateOperations = () => {
+    console.log(this.state.operations);
+    // let string = this.state.operations.join('');
+    let equation = this.state.operations.map(item => {
+      if (item !== ('+' || '-' || '*' || '/')) {
+        return Number(item);
+      } else {
+        return item;
+      }
+    });    
+    console.log(equation);
   }
 
   render() {
